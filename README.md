@@ -1,4 +1,4 @@
 ## Regression Prediction Problem
 
-Very basic initial repo to get started with this prediction problem.
+This project is part of a Kaggle Competition to predict the nightly price for AirBNBs in Jersey City (NJ), Chicago (IL), and Washington DC through the application of Machine Learning and Data Science using listing characteristics, neighborhood information, host information, and reviews. Model performance was evaluated using Mean Average Error (MAE) during my STAT 303-3 Class.
 
