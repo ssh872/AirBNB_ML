@@ -1,0 +1,80 @@
+---
+title: "Prediction Problem: Regression"
+subtitle: "Statistics 301-3: Data Science with R"
+format: html
+author: "Sameer Hirani"
+date: Today
+---
+:::{.callout}
+[Hirani's Github Repo](https://github.com/stat301-3-2026-spring/regression-prediction-problem-ssh872.git)
+:::
+---
+
+## Introduction
+
+This project is part of a Kaggle Competition to predict the nightly price for AirBNBs in Jersey City (NJ), Chicago (IL), and Washington DC through the application of Machine Learning and Data Science using listing characteristics, neighborhood information, host information, and reviews. Model performance was evaluated using Mean Average Error (MAE).
+
+### Data Preparation & Feature Engineering
+
+The preprocessing pipeline cleaned, classified, and transformed the data to help the model. Key Engineered Features include:
+
+* `dist_center`
+
+* `has_rooftop`
+
+* `has_boat_slip`
+
+* `instant_book`
+
+* `bath_per_bed`
+
+* `bed_per_accommodate`
+
+* `neighborhood_mean_price`
+
+### Preprocessing Recipe
+
+The recipe removed identifiers,redundant night-limit and distance columns, and free-text columns; extracted date features from the host since and review columns; imputed missing values for nominal and numeric columns; handled unknown and new nominal values; converted nominal variables into binary variables, and removed variables with 0 variance.
+
+### Model Development
+
+Several types of models were explored and tested during model development. Performance and Hyper parameter Tuning were evaluated and informed by 10-fold cross-validation. The metric to assess models was `MAE`.
+
+Model types scripted and tested include:
+
+* Boosted Tree
+
+* Elastic Net
+
+* Multivariate Adaptive Regression Splines 
+
+* Random Forest
+
+* Stacked Ensemble
+
+## Selected Models
+
+### Boosted Tree (Best)
+The boosted tree model was tuned across the number of predictors, minimum node size, and learning rate.
+
+```{r}
+#| echo: false
+load("table/xgb_table.rda")
+xgb_table
+```
+The public leader board score achieved for the Boosted Tree was **244.68**
+
+### Boosted Tree
+
+What separates this boosted tree from the previous one is the use of the log scale. In intially modeling, my data engineering included the logging of the price variable which, in turn, hindered my ability to score well on my models. Correcting this error is what resulted in my best model.
+
+The public leader board score achieved for the Boosted Tree was **303.27**
+
+
+## Conclusion
+
+This regression problem demonstrated the ability of the Boosted Tree over the Random Forest, Elastic Net, Multivariate Adaptive Regression Splines, and Ensemble Models in predicting the AirBNB prices for this dataset. In creating my models and engineering the data, not using the log scale earlier would have greatly improved my experience in this project and perhaps resulted in having made greater strides earlier. Feature engineering for distance, neigborhoods, and specific amenities such as rooftops and boat slips was an enjoyable journey that revealed data insights.
+
+## Generative AI Disclosure
+
+Claude (Anthropic) was used throughout this project to assist with code development, debugging, and feature engineering. Specific uses included diagnosing prediction errors, identifying feature engineering opportunities, structuring the stacking workflow, and helping to identify that my results were hindered due to the log transformation on price in training.
